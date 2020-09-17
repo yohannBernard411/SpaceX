@@ -1,0 +1,33 @@
+.react-player video {
+  position: relative;
+  left: 0;
+  top: 0;
+  transform: none;
+}
+.react-player{
+  display: flex;
+}
+.player-wrapper {
+  position: relative;
+  margin-top: 30px; 
+  padding-left: 10%;
+  margin-bottom: 30px; 
+  width: 80%;
+  height: 500px;
+  text-align: center;
+}
+.myhorizontal{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+}
+.myvertical{
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+}
+.myhorizontal>span{
+  display: flex;
+}
