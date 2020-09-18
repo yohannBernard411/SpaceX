@@ -46,12 +46,6 @@ function Row(props) {
 
 Row.propTypes = {
   row: PropTypes.string,
-  id: PropTypes.string,
-  full_name: PropTypes.string,
-  status: PropTypes.string,
-  landing_type: PropTypes.string,
-  attempted_landings: PropTypes.number,
-  successful_landings: PropTypes.number,
 };
 
 export default function CollapsibleTable(props) {
@@ -81,9 +75,7 @@ export default function CollapsibleTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {props.landings
-            ? props.landings.map(row => <Row key={row.id} row={row} />)
-            : <div></div>}
+          {props.landings ? props.landings.map(row => <Row key={row.id} row={row} />) : <div></div>}
         </TableBody>
       </Table>
     </TableContainer>
