@@ -96,7 +96,7 @@ export default function SimpleAccordionCore(props) {
   );
 }
 
-CoreAccordion.propTypes = {
+SimpleAccordionCore.propTypes = {
   core: PropTypes.object,
   core_serial: PropTypes.string,
   status: PropTypes.string,
