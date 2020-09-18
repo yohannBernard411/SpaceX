@@ -86,7 +86,7 @@ export default function CapsuleAccordion(props) {
         </AccordionSummary>
         <AccordionDetails>
           {props.capsule.missions.map(mission => (
-            <Typography component='span' key={mission.flight}>
+            <Typography component="span" key={mission.flight}>
               <div>
                 <FormattedMessage {...messages.mission} />
                 {mission.name} <br />
