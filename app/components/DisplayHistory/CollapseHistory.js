@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Collapse from '@material-ui/core/Collapse';
@@ -13,7 +14,6 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import { NavLink } from 'react-router-dom';
 import Button from 'components/Button';
 import DesactivedButton from 'components/DesactivedButton';
 import { FormattedMessage } from 'react-intl';
@@ -119,6 +119,17 @@ function Row(props) {
   );
 }
 
+GridDragons.propTypes = {
+  title: PropTypes.array,
+  event_date_utc: PropTypes.string,
+  flight_number: PropTypes.string,
+  details: PropTypes.string,
+  links: PropTypes.object,
+  reddit: PropTypes.string,
+  article: PropTypes.string,
+  wikipedia: PropTypes.string,
+};
+
 export default function CollapseHistory(props) {
   return (
     <TableContainer component={Paper} style={topSpace}>
@@ -146,3 +157,7 @@ export default function CollapseHistory(props) {
     </TableContainer>
   );
 }
+
+CollapseHistory.propTypes = {
+  history: PropTypes.array,
+};
