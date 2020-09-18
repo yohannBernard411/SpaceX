@@ -54,7 +54,6 @@ export default class DragonDetailsPage extends React.Component {
           ) : (
             console.log('pas encore de dragon!')
           )}
-          )}
         </H1>
 
         {this.state.dragon ? (

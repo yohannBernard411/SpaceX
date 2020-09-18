@@ -89,7 +89,8 @@ export default function CapsuleAccordion(props) {
               <div>
                 <FormattedMessage {...messages.mission} />
                 {mission.name} <br />
-            <FormattedMessage {...messages.flight} />{mission.flight} </div></Typography>)}
+            <FormattedMessage {...messages.flight} />{mission.flight} </div></Typography>
+          ))}
         </AccordionDetails>
       </Accordion>
     </div>
