@@ -68,8 +68,4 @@ export default function GridDragons(props) {
 
 GridDragons.propTypes = {
   dragons: PropTypes.array,
-  id: PropTypes.string,
-  flickr_images: PropTypes.array,
-  name: PropTypes.string,
-  dry_mass_kg: PropTypes.number,
 };
