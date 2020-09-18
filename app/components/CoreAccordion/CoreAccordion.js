@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -79,15 +80,29 @@ export default function SimpleAccordionCore(props) {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          {props.core.missions.map((mission, index) => (
-            <Typography component={'span'} key={index}>
+          {props.core.missions.map((mission) => (
+            <Typography component="span" key={mission.flight}>
               <div>
                 <FormattedMessage {...messages.mission} />
                 {mission.name} <br />
-            <FormattedMessage {...messages.flight} />{mission.flight} </div></Typography>
+                <FormattedMessage {...messages.flight} />
+                {mission.flight}
+              </div>
+            </Typography>
           ))}
         </AccordionDetails>
       </Accordion>
     </div>
   );
 }
+
+CoreAccordion.propTypes = {
+  core: PropTypes.object,
+  core_serial: PropTypes.string,
+  status: PropTypes.string,
+  block: PropTypes.string,
+  original_launch: PropTypes.string,
+  reuse_count: PropTypes.string,
+  details: PropTypes.string,
+  missions: PropTypes.object,
+};
