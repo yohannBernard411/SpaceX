@@ -80,7 +80,7 @@ export default function SimpleAccordionCore(props) {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          {props.core.missions.map((mission) => (
+          {props.core.missions.map(mission => (
             <Typography component="span" key={mission.flight}>
               <div>
                 <FormattedMessage {...messages.mission} />
