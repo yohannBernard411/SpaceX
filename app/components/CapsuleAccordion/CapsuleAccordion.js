@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -95,4 +96,8 @@ export default function CapsuleAccordion(props) {
       </Accordion>
     </div>
   );
-}
+};
+
+CapsuleAccordion.propTypes = {
+  capsule: PropTypes.object
+};
