@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -43,6 +44,16 @@ function Row(props) {
   );
 }
 
+Row.propTypes = {
+  row: PropTypes.string,
+  id: PropTypes.string,
+  full_name: PropTypes.string,
+  status: PropTypes.string,
+  landing_type: PropTypes.string,
+  attempted_landings: PropTypes.number,
+  successful_landings: PropTypes.number,
+};
+
 export default function CollapsibleTable(props) {
   return (
     <TableContainer component={Paper} style={topSpace}>
@@ -72,9 +83,14 @@ export default function CollapsibleTable(props) {
         <TableBody>
           {props.landings
             ? props.landings.map(row => <Row key={row.id} row={row} />)
-            : console.log('pas encore de landings!')}
+            : <div></div>}
         </TableBody>
       </Table>
     </TableContainer>
   );
 }
+
+CollapsibleTable.propTypes = {
+  landings: PropTypes.object,
+  id: PropTypes.string,
+};
