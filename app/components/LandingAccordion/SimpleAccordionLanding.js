@@ -11,6 +11,7 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
+import DesactivedButton from 'components/DesactivedButton';
 
 const useStyles = makeStyles(theme => ({
   root: {
