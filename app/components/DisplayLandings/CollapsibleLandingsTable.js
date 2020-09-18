@@ -75,7 +75,11 @@ export default function CollapsibleTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {props.landings ? (props.landings.map(row => <Row key={row.id} row={row} />)) : (<div />)}
+          {props.landings ? (
+            props.landings.map(row => <Row key={row.id} row={row} />)
+          ) : (
+            <div />
+          )}
         </TableBody>
       </Table>
     </TableContainer>
