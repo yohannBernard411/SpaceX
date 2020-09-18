@@ -9,7 +9,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
-
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
@@ -87,21 +86,21 @@ export default function CapsuleAccordion(props) {
         </AccordionSummary>
         <AccordionDetails>
           {props.capsule.missions.map(mission => (
-            <Typography component={'span'} key={mission.flight}>
+            <Typography component='span' key={mission.flight}>
               <div>
                 <FormattedMessage {...messages.mission} />
                 {mission.name} <br />
                 <FormattedMessage {...messages.flight} />
-                {mission.flight} 
+                {mission.flight}
               </div>
             </Typography>
           ))}
         </AccordionDetails>
       </Accordion>
     </div>
-  )
-};
+  );
+}
 
 CapsuleAccordion.propTypes = {
-  capsule: PropTypes.object
+  capsule: PropTypes.object,
 };
