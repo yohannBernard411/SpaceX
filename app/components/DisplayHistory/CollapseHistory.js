@@ -119,7 +119,7 @@ function Row(props) {
   );
 }
 
-GridDragons.propTypes = {
+Row.propTypes = {
   title: PropTypes.array,
   event_date_utc: PropTypes.string,
   flight_number: PropTypes.string,
