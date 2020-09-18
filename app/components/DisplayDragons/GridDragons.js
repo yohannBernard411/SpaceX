@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -64,3 +65,11 @@ export default function GridDragons(props) {
     </div>
   );
 }
+
+GridDragons.propTypes = {
+  dragons: PropTypes.array,
+  id: PropTypes.string,
+  flickr_images: PropTypes.array,
+  name: PropTypes.string,
+  dry_mass_kg: PropTypes.number,
+};
