@@ -120,6 +120,7 @@ function Row(props) {
 }
 
 Row.propTypes = {
+  row: PropTypes.string,
   title: PropTypes.array,
   event_date_utc: PropTypes.string,
   flight_number: PropTypes.string,
