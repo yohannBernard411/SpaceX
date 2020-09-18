@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Collapse from '@material-ui/core/Collapse';
@@ -106,6 +107,19 @@ function Row(props) {
   );
 }
 
+Row.propTypes = {
+  row: PropTypes.object,
+  core_serial: PropTypes.string,
+  status: PropTypes.string,
+  block: PropTypes.string,
+  original_launch: PropTypes.string,
+  reuse_count: PropTypes.number,
+  details: PropTypes.string,
+  missions: PropTypes.object,
+  name: PropTypes.string,
+  flight: PropTypes.number,
+};
+
 export default function CollapsibleTable(props) {
   return (
     <TableContainer component={Paper} style={topSpace}>
@@ -142,3 +156,9 @@ export default function CollapsibleTable(props) {
     </TableContainer>
   );
 }
+
+CollapsibleTable.propTypes = {
+  cores: PropTypes.array,
+  core_serial: PropTypes.string,
+  capsule_id: PropTypes.string,
+};
