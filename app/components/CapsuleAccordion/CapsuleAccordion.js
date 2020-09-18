@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -7,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
-import PropTypes from 'prop-types';
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -85,17 +86,20 @@ export default function CapsuleAccordion(props) {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          {props.capsule.missions.map((mission, index) => (
-            <Typography component={'span'} key={index}>
+          {props.capsule.missions.map(mission => (
+            <Typography component={'span'} key={mission.flight}>
               <div>
                 <FormattedMessage {...messages.mission} />
                 {mission.name} <br />
-            <FormattedMessage {...messages.flight} />{mission.flight} </div></Typography>
+                <FormattedMessage {...messages.flight} />
+                {mission.flight} 
+              </div>
+            </Typography>
           ))}
         </AccordionDetails>
       </Accordion>
     </div>
-  );
+  )
 };
 
 CapsuleAccordion.propTypes = {
