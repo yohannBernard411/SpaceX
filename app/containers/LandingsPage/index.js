@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import H1 from 'components/H1';
 import CollapsibleLandingsTable from 'components/DisplayLandings/CollapsibleLandingsTable';
+import Alert from '@material-ui/lab/Alert';
 import messages from './messages';
 
 const myHeader = new Headers({
@@ -33,8 +34,12 @@ export default class LandingsPage extends React.Component {
           landings: data,
         });
       })
-      .catch(error => console.log(`Erreur de json: ${error}`))
-      .catch(error => console.log(`Erreur de fetch: ${error}`));
+      .catch(error => (
+        <Alert severity="warning">Erreur de json: ${error}</Alert>
+      ))
+      .catch(error => (
+        <Alert severity="warning">Erreur de fetch: ${error}</Alert>
+      ));
   };
 
   render() {
@@ -47,7 +52,6 @@ export default class LandingsPage extends React.Component {
         <H1>
           <FormattedMessage {...messages.header} />
         </H1>
-
         <CollapsibleLandingsTable landings={this.state.landings} />
       </div>
     );

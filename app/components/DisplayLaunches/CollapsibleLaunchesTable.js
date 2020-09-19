@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -21,16 +22,6 @@ const useRowStyles = makeStyles({
 
 const topSpace = {
   marginTop: '40px',
-};
-
-const myHeader = new Headers({
-  'Content-Type': 'application/x-www-form-urlencoded',
-});
-
-const init = {
-  method: 'GET',
-  headers: myHeader,
-  mode: 'cors',
 };
 
 function Row(props) {
@@ -63,6 +54,10 @@ function Row(props) {
   );
 }
 
+Row.propTypes = {
+  row: PropTypes.string,
+};
+
 export default function CollapsibleTable(props) {
   return (
     <TableContainer component={Paper} style={topSpace}>
@@ -84,13 +79,17 @@ export default function CollapsibleTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {props.launches
-            ? props.launches.map(row => (
-              <Row key={row.flight_number} row={row} />
-            ))
-            : console.log('pas encore de landings!')}
+          {props.launches ? (
+            props.launches.map(row => <Row key={row.flight_number} row={row} />)
+          ) : (
+            <p />
+          )}
         </TableBody>
       </Table>
     </TableContainer>
   );
 }
+
+CollapsibleTable.propTypes = {
+  launches: PropTypes.array,
+};

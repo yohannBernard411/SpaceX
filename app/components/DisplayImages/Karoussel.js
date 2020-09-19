@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -36,8 +37,8 @@ export default function Karoussel(props) {
   return (
     <div className={classes.root}>
       <GridList className={classes.gridList} cols={2.5}>
-        {props.pictures.map((picture, index) => (
-          <GridListTile key={index}>
+        {props.pictures.map(picture => (
+          <GridListTile key={picture}>
             <img src={picture} alt={props.name} />
             <GridListTileBar
               title={props.name}
@@ -59,3 +60,8 @@ export default function Karoussel(props) {
     </div>
   );
 }
+
+Karoussel.propTypes = {
+  pictures: PropTypes.string,
+  name: PropTypes.string,
+};

@@ -15,10 +15,6 @@ export default defineMessages({
     id: `${scope}.date`,
     defaultMessage: 'Date: ',
   },
-  attempt: {
-    id: `${scope}.attempt`,
-    defaultMessage: 'Attempt: ',
-  },
   ships: {
     id: `${scope}.ships`,
     defaultMessage: 'Ships',
@@ -62,10 +58,6 @@ export default defineMessages({
   flight: {
     id: `${scope}.flight`,
     defaultMessage: 'Flight: ',
-  },
-  block: {
-    id: `${scope}.block`,
-    defaultMessage: 'Block: ',
   },
   gridfins: {
     id: `${scope}.gridfins`,
@@ -134,10 +126,6 @@ export default defineMessages({
   carenage: {
     id: `${scope}.carenage`,
     defaultMessage: 'Fairings: ',
-  },
-  reused: {
-    id: `${scope}.reused`,
-    defaultMessage: 'Reused: ',
   },
   attempt: {
     id: `${scope}.attempt`,

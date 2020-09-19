@@ -1,9 +1,3 @@
-/*
- * HomePage
- *
- * This is the first thing users see of our App, at the '/' route
- */
-
 import React, { useEffect, memo } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
@@ -30,14 +24,7 @@ import saga from './saga';
 
 const key = 'home';
 
-export function HomePage({
-  username,
-  loading,
-  error,
-  repos,
-  onSubmitForm,
-  onChangeUsername,
-}) {
+export function HomePage({ username, onSubmitForm }) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
@@ -45,12 +32,6 @@ export function HomePage({
     // When initial state username is not null, submit the form to load repos
     if (username && username.trim().length > 0) onSubmitForm();
   }, []);
-
-  const reposListProps = {
-    loading,
-    error,
-    repos,
-  };
 
   return (
     <article>

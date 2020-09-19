@@ -22,7 +22,7 @@ import HistoryPage from 'containers/HistoryPage/Loadable';
 import LandingsPage from 'containers/LandingsPage/Loadable';
 import LandingDetailsPage from 'containers/LandingDetailsPage/Loadable';
 import LaunchesPage from 'containers/LaunchesPage/Loadable';
-import LauncheDetailsPage from 'containers/LauncheDetailsPage/Loadable';
+import LaunchDetailsPage from 'containers/LaunchDetailsPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
@@ -57,7 +57,7 @@ export default function App() {
         <Route path="/landings" component={LandingsPage} />
         <Route path="/landingbyid/:id" component={LandingDetailsPage} />
         <Route path="/launches" component={LaunchesPage} />
-        <Route path="/launchebyid/:id" component={LauncheDetailsPage} />
+        <Route path="/launchebyid/:id" component={LaunchDetailsPage} />
         <Route path="" component={NotFoundPage} />
       </Switch>
       <Footer />

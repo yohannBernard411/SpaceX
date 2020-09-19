@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Karoussel from 'components/Karoussel';
+import Karoussel from 'components/DisplayImages/Karoussel';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
@@ -25,6 +26,7 @@ const topSpace = {
 
 export default function SimpleAccordionDragon(props) {
   const classes = useStyles();
+  const { dragon } = props;
 
   return (
     <div className={classes.root} style={topSpace}>
@@ -41,93 +43,93 @@ export default function SimpleAccordionDragon(props) {
         <AccordionDetails>
           <Typography>
             <FormattedMessage {...messages.name} />
-            {props.dragon.name}
+            {dragon.name}
             <br />
             <FormattedMessage {...messages.serial} />
-            {props.dragon.id}
+            {dragon.id}
             <br />
             <FormattedMessage {...messages.type} />
-            {props.dragon.type}
+            {dragon.type}
             <br />
             <FormattedMessage {...messages.active} />
-            {props.dragon.active ? 'Oui' : 'Non'}
+            {dragon.active ? 'Oui' : 'Non'}
             <br />
             <FormattedMessage {...messages.crew_capacity} />
-            {props.dragon.crew_capacity} pers
+            {dragon.crew_capacity} pers
             <br />
             <FormattedMessage {...messages.sidewall_angle_deg} />
-            {props.dragon.sidewall_angle_deg} degrés
+            {dragon.sidewall_angle_deg} degrés
             <br />
             <FormattedMessage {...messages.orbit_duration_yr} />
-            {props.dragon.orbit_duration_yr} ans
+            {dragon.orbit_duration_yr} ans
             <br />
             <FormattedMessage {...messages.dry_mass_kg} />
-            {props.dragon.dry_mass_kg} Kg
+            {dragon.dry_mass_kg} Kg
             <br />
             <FormattedMessage {...messages.first_flight} />
-            {new Date(props.dragon.first_flight).getDate()} -{' '}
-            {new Date(props.dragon.first_flight).getMonth() + 1} -{' '}
-            {new Date(props.dragon.first_flight).getYear() + 1900}
+            {new Date(dragon.first_flight).getDate()} -{' '}
+            {new Date(dragon.first_flight).getMonth() + 1} -{' '}
+            {new Date(dragon.first_flight).getYear() + 1900}
             <br />
             <br />
             <FormattedMessage {...messages.shield} />
             <br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <FormattedMessage {...messages.material} />
-            {props.dragon.heat_shield.material},<br />
+            {dragon.heat_shield.material},<br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <FormattedMessage {...messages.size_meters} />
-            {props.dragon.heat_shield.size_meters} m,
+            {dragon.heat_shield.size_meters} m,
             <br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <FormattedMessage {...messages.temp_degrees} />
-            {props.dragon.heat_shield.temp_degrees} °C,
+            {dragon.heat_shield.temp_degrees} °C,
             <br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <FormattedMessage {...messages.dev_partner} />
-            {props.dragon.heat_shield.dev_partner}
+            {dragon.heat_shield.dev_partner}
             <br />
             <br />
             <FormattedMessage {...messages.thrusters} />
             <br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <FormattedMessage {...messages.thruster_type} />
-            {props.dragon.thrusters[0].type},<br />
+            {dragon.thrusters[0].type},<br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <FormattedMessage {...messages.thruster_amount} />
-            {props.dragon.thrusters[0].amount},<br />
+            {dragon.thrusters[0].amount},<br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <FormattedMessage {...messages.thruster_pods} />
-            {props.dragon.thrusters[0].pods},<br />
+            {dragon.thrusters[0].pods},<br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <FormattedMessage {...messages.thruster_fuel1} />
-            {props.dragon.thrusters[0].fuel_1},<br />
+            {dragon.thrusters[0].fuel_1},<br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <FormattedMessage {...messages.thruster_fuel2} />
-            {props.dragon.thrusters[0].fuel_2},<br />
+            {dragon.thrusters[0].fuel_2},<br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <FormattedMessage {...messages.thruster_isp} />
-            {props.dragon.thrusters[0].isp} isp,
+            {dragon.thrusters[0].isp} isp,
             <br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <FormattedMessage {...messages.thruster_thrust} />
-            {props.dragon.thrusters[0].thrust.kN} kN,
+            {dragon.thrusters[0].thrust.kN} kN,
             <br />
             <br />
             <FormattedMessage {...messages.launch_payload_mass} />
-            {props.dragon.launch_payload_mass.kg} Kg,
+            {dragon.launch_payload_mass.kg} Kg,
             <br />
             <FormattedMessage {...messages.launch_payload_vol} />
-            {props.dragon.launch_payload_vol.cubic_meters} m3,
+            {dragon.launch_payload_vol.cubic_meters} m3,
             <br />
             <FormattedMessage {...messages.return_payload_mass} />
-            {props.dragon.return_payload_mass.kg} Kg,
+            {dragon.return_payload_mass.kg} Kg,
             <br />
             <FormattedMessage {...messages.return_payload_vol} />
-            {props.dragon.return_payload_vol.cubic_meters} m3,
+            {dragon.return_payload_vol.cubic_meters} m3,
             <br />
             <FormattedMessage {...messages.diameter} />
-            {props.dragon.diameter.meters} m.
+            {dragon.diameter.meters} m.
             <br />
             <br />
           </Typography>
@@ -144,13 +146,14 @@ export default function SimpleAccordionDragon(props) {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>{props.dragon.description}</Typography>
+          <Typography>{dragon.description}</Typography>
         </AccordionDetails>
       </Accordion>
-      <Karoussel
-        pictures={props.dragon.flickr_images}
-        name={props.dragon.name}
-      />
+      <Karoussel pictures={dragon.flickr_images} name={dragon.name} />
     </div>
   );
 }
+
+SimpleAccordionDragon.propTypes = {
+  dragon: PropTypes.object,
+};

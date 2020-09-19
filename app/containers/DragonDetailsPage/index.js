@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import H1 from 'components/H1';
 import SimpleAccordionDragon from 'components/DragonAccordion/SimpleAccordionDragon';
+import Alert from '@material-ui/lab/Alert';
 import messages from './messages';
 
 const myHeader = new Headers({
@@ -34,8 +36,12 @@ export default class DragonDetailsPage extends React.Component {
           dragon: data,
         });
       })
-      .catch(error => console.log(`Erreur de json: ${error}`))
-      .catch(error => console.log(`Erreur de fetch: ${error}`));
+      .catch(error => (
+        <Alert severity="warning">Erreur de json: ${error}</Alert>
+      ))
+      .catch(error => (
+        <Alert severity="warning">Erreur de fetch: ${error}</Alert>
+      ));
   };
 
   render() {
@@ -52,16 +58,20 @@ export default class DragonDetailsPage extends React.Component {
               values={{ dragon: this.state.dragon.name }}
             />
           ) : (
-            console.log('pas encore de dragon!')
+            <div />
           )}
         </H1>
 
         {this.state.dragon ? (
           <SimpleAccordionDragon dragon={this.state.dragon} />
         ) : (
-          console.log('pas encore de dragon!')
+          <div />
         )}
       </div>
     );
   }
 }
+
+DragonDetailsPage.propTypes = {
+  match: PropTypes.object,
+};

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -10,8 +11,8 @@ import Table from '@material-ui/core/Table';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import { FormattedMessage } from 'react-intl';
-import messages from './messages';
 import DesactivedButton from 'components/DesactivedButton';
+import messages from './messages';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -29,6 +30,7 @@ const topSpace = {
 
 export default function SimpleAccordionDragon(props) {
   const classes = useStyles();
+  const { landing } = props;
 
   return (
     <div className={classes.root} style={topSpace}>
@@ -45,37 +47,37 @@ export default function SimpleAccordionDragon(props) {
         <AccordionDetails>
           <Typography>
             <FormattedMessage {...messages.name} />
-            {props.landing.full_name}
+            {landing.full_name}
             <br />
             <FormattedMessage {...messages.status} />
-            {props.landing.status}
+            {landing.status}
             <br />
             <FormattedMessage {...messages.type} />
-            {props.landing.landing_type}
+            {landing.landing_type}
             <br />
             <FormattedMessage {...messages.attempted} />
-            {props.landing.attempted_landings}
+            {landing.attempted_landings}
             <br />
             <FormattedMessage {...messages.success} />
-            {props.landing.successful_landings}
+            {landing.successful_landings}
             <br />
             <FormattedMessage {...messages.location} />
             <br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <FormattedMessage {...messages.locname} />
-            {props.landing.location.name}
+            {landing.location.name}
             <br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <FormattedMessage {...messages.locregion} />
-            {props.landing.location.region}
+            {landing.location.region}
             <br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <FormattedMessage {...messages.loclat} />
-            {props.landing.location.latitude}
+            {landing.location.latitude}
             <br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <FormattedMessage {...messages.loclong} />
-            {props.landing.location.longitude}
+            {landing.location.longitude}
             <br />
           </Typography>
         </AccordionDetails>
@@ -91,7 +93,7 @@ export default function SimpleAccordionDragon(props) {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>{props.landing.details}</Typography>
+          <Typography>{landing.details}</Typography>
         </AccordionDetails>
       </Accordion>
       <Accordion>
@@ -108,9 +110,9 @@ export default function SimpleAccordionDragon(props) {
           <Table>
             <TableRow>
               <TableCell align="left" width="30%" />
-              {props.landing.wikipedia ? (
+              {landing.wikipedia ? (
                 <TableCell align="center" width="30%">
-                  <a target="_blank" href={props.landing.wikipedia}>
+                  <a target="_blank" href={landing.wikipedia}>
                     <Button>Wikipedia</Button>
                   </a>
                 </TableCell>
@@ -125,3 +127,7 @@ export default function SimpleAccordionDragon(props) {
     </div>
   );
 }
+
+SimpleAccordionDragon.propTypes = {
+  landing: PropTypes.object,
+};

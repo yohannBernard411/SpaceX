@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import H1 from 'components/H1';
 import SimpleAccordionLaunch from 'components/LaunchAccordion/SimpleAccordionLaunch';
+import Alert from '@material-ui/lab/Alert';
 import messages from './messages';
 
 const myHeader = new Headers({
@@ -15,12 +17,12 @@ const init = {
   mode: 'cors',
 };
 
-export default class LauncheDetailsPage extends React.Component {
+export default class LaunchDetailsPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       launcheId: props.match.params.id,
-      launche: null,
+      launch: null,
     };
   }
 
@@ -32,13 +34,16 @@ export default class LauncheDetailsPage extends React.Component {
       .then(response => response.json())
       .then(json => {
         const data = json;
-        console.log(`data launcheDetails: ${data}`);
         this.setState({
           launch: data,
         });
       })
-      .catch(error => console.log(`Erreur de json: ${error}`))
-      .catch(error => console.log(`Erreur de fetch: ${error}`));
+      .catch(error => (
+        <Alert severity="warning">Erreur de json: ${error}</Alert>
+      ))
+      .catch(error => (
+        <Alert severity="warning">Erreur de fetch: ${error}</Alert>
+      ));
   };
 
   render() {
@@ -61,9 +66,13 @@ export default class LauncheDetailsPage extends React.Component {
         {this.state.launch ? (
           <SimpleAccordionLaunch launch={this.state.launch} />
         ) : (
-          console.log('pas encore de launche!')
+          <div />
         )}
       </div>
     );
   }
 }
+
+LaunchDetailsPage.propTypes = {
+  match: PropTypes.object,
+};

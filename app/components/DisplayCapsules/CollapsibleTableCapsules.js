@@ -168,6 +168,6 @@ export default function CollapsibleTable(props) {
 }
 
 CollapsibleTable.propTypes = {
-  capsules: PropTypes.object,
+  capsules: PropTypes.array,
   capsule_serial: PropTypes.string,
 };

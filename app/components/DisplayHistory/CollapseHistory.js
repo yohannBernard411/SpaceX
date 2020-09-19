@@ -83,27 +83,21 @@ function Row(props) {
                   <TableRow>
                     <TableCell align="left" width="30%">
                       {row.links.reddit ? (
-                        <a target="_blank" href={row.links.reddit}>
-                          <Button>Reddit</Button>
-                        </a>
+                        <Button href={row.links.reddit}>Reddit</Button>
                       ) : (
                         <DesactivedButton>Reddit</DesactivedButton>
                       )}
                     </TableCell>
                     <TableCell align="center" width="30%">
                       {row.links.wikipedia ? (
-                        <a target="_blank" href={row.links.wikipedia}>
-                          <Button>Wikipedia</Button>
-                        </a>
+                        <Button href={row.links.wikipedia}>Wikipedia</Button>
                       ) : (
                         <DesactivedButton>Wikipedia</DesactivedButton>
                       )}
                     </TableCell>
                     <TableCell align="right" width="30%">
                       {row.links.article ? (
-                        <a target="_blank" href={row.links.article}>
-                          <Button>Article</Button>
-                        </a>
+                        <Button href={row.links.article}>Article</Button>
                       ) : (
                         <DesactivedButton>Article</DesactivedButton>
                       )}
@@ -120,7 +114,7 @@ function Row(props) {
 }
 
 Row.propTypes = {
-  row: PropTypes.string,
+  row: PropTypes.object,
   title: PropTypes.array,
   event_date_utc: PropTypes.string,
   flight_number: PropTypes.string,

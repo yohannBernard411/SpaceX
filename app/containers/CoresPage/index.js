@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import H1 from 'components/H1';
 import CollapsibleTable from 'components/DisplayCores/CollapsibleTableCores';
+import Alert from '@material-ui/lab/Alert';
 import messages from './messages';
 
 const myHeader = new Headers({
@@ -33,8 +34,12 @@ export default class CoresPage extends React.Component {
           cores: data,
         });
       })
-      .catch(error => console.log(`Erreur de json: ${error}`))
-      .catch(error => console.log(`Erreur de fetch: ${error}`));
+      .catch(error => (
+        <Alert severity="warning">Erreur de json: ${error}</Alert>
+      ))
+      .catch(error => (
+        <Alert severity="warning">Erreur de fetch: ${error}</Alert>
+      ));
   };
 
   render() {

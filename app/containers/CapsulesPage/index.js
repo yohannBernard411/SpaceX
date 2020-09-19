@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import H1 from 'components/H1';
 import CollapsibleTable from 'components/DisplayCapsules/CollapsibleTableCapsules';
+import Alert from '@material-ui/lab/Alert';
 import messages from './messages';
 
 const myHeader = new Headers({
@@ -17,10 +18,10 @@ const init = {
 
 export default class CapsulesPage extends React.Component {
   constructor(props) {
-    super(props),
-    (this.state = {
+    super(props);
+    this.state = {
       capsules: [],
-    });
+    };
   }
 
   componentDidMount = () => {
@@ -33,8 +34,12 @@ export default class CapsulesPage extends React.Component {
           capsules: data,
         });
       })
-      .catch(error => console.log(`erreur de json:${error}`))
-      .catch(error => console.log(`erreur de fetch: ${error}`));
+      .catch(error => (
+        <Alert severity="warning">Erreur de json: ${error}</Alert>
+      ))
+      .catch(error => (
+        <Alert severity="warning">Erreur de fetch: ${error}</Alert>
+      ));
   };
 
   render() {
@@ -47,7 +52,6 @@ export default class CapsulesPage extends React.Component {
         <H1>
           <FormattedMessage {...messages.header} />
         </H1>
-
         <CollapsibleTable capsules={this.state.capsules} />
       </div>
     );

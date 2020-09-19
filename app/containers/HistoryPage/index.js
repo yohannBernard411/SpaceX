@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import H1 from 'components/H1';
 import CollapseHistory from 'components/DisplayHistory/CollapseHistory';
+import Alert from '@material-ui/lab/Alert';
 import messages from './messages';
 
 const myHeader = new Headers({
@@ -33,8 +34,12 @@ export default class HistoryPage extends React.Component {
           history: data,
         });
       })
-      .catch(error => console.log(`Erreur de json: ${error}`))
-      .catch(error => console.log(`Erreur de fetch: ${error}`));
+      .catch(error => (
+        <Alert severity="warning">Erreur de json: ${error}</Alert>
+      ))
+      .catch(error => (
+        <Alert severity="warning">Erreur de fetch: ${error}</Alert>
+      ));
   };
 
   render() {
@@ -50,7 +55,7 @@ export default class HistoryPage extends React.Component {
         {this.state.history ? (
           <CollapseHistory history={this.state.history} />
         ) : (
-          console.log('pas encore de history!')
+          <div />
         )}
       </div>
     );

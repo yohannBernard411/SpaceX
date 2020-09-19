@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import H1 from 'components/H1';
 import CollapsibleLaunchesTable from 'components/DisplayLaunches/CollapsibleLaunchesTable';
+import Alert from '@material-ui/lab/Alert';
 import messages from './messages';
 
 const myHeader = new Headers({
@@ -29,13 +30,16 @@ export default class LaunchesPage extends React.Component {
       .then(response => response.json())
       .then(json => {
         const data = json;
-        console.log(`data: ${data[0].mission_name}`);
         this.setState({
           launches: data,
         });
       })
-      .catch(error => console.log(`Erreur de json: ${error}`))
-      .catch(error => console.log(`Erreur de fetch: ${error}`));
+      .catch(error => (
+        <Alert severity="warning">Erreur de json: ${error}</Alert>
+      ))
+      .catch(error => (
+        <Alert severity="warning">Erreur de fetch: ${error}</Alert>
+      ));
   };
 
   render() {

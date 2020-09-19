@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -6,11 +7,10 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from 'components/Button';
-import { NavLink } from 'react-router-dom';
 import DesactivedButton from 'components/DesactivedButton';
 import ReactPlayer from 'react-player';
 import './react_player.css';
-import Karoussel from 'components/Karoussel';
+import Karoussel from 'components/DisplayImages/Karoussel';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
@@ -24,19 +24,30 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const wrapperStyle = {
+  width: '100%',
+  padding: '0 100px 0 100px',
+};
+
+const videoStyle = {
+  align: 'center',
+};
+
 export default function SimpleAccordionLaunch(props) {
   const classes = useStyles();
+  const { launch } = props;
 
   return (
     <div className={classes.root}>
-      <div className="player-wrapper">
+      <div className="player-wrapper" style={wrapperStyle}>
         <ReactPlayer
+          style={videoStyle}
           playing
           className="react-player"
           width="100%"
           height="100%"
           controls
-          url={props.launch.links.video_link}
+          url={launch.links.video_link}
         />
       </div>
       <Accordion>
@@ -52,29 +63,29 @@ export default function SimpleAccordionLaunch(props) {
         <AccordionDetails>
           <Typography>
             <FormattedMessage {...messages.missionname} />
-            {props.launch.mission_name}
+            {launch.mission_name}
             <br />
             <FormattedMessage {...messages.date} />
-            {new Date(props.launch.launch_date_utc).getDate()} -{' '}
-            {new Date(props.launch.launch_date_utc).getMonth() + 1} -{' '}
-            {new Date(props.launch.launch_date_utc).getYear() + 1900}
+            {new Date(launch.launch_date_utc).getDate()} -{' '}
+            {new Date(launch.launch_date_utc).getMonth() + 1} -{' '}
+            {new Date(launch.launch_date_utc).getYear() + 1900}
             <br />
             <FormattedMessage {...messages.attempt} />
-            {props.launch.is_tentative ? 'Oui' : 'Non'}
+            {launch.is_tentative ? 'Oui' : 'Non'}
             <br />
             <FormattedMessage {...messages.ships} />
-            {props.launch.ships}
+            {launch.ships}
             <br />
             <FormattedMessage {...messages.launchsite} />
             <br />
             <FormattedMessage {...messages.sitename} />
-            {props.launch.launch_site.site_name}
+            {launch.launch_site.site_name}
             <br />
             <FormattedMessage {...messages.totalname} />
-            {props.launch.launch_site.site_name_long}
+            {launch.launch_site.site_name_long}
             <br />
             <FormattedMessage {...messages.crew} />
-            {props.launch.crew}
+            {launch.crew}
             <br />
           </Typography>
         </AccordionDetails>
@@ -92,127 +103,93 @@ export default function SimpleAccordionLaunch(props) {
         <AccordionDetails>
           <Typography>
             <FormattedMessage {...messages.name} />
-            {props.launch.rocket.rocket_name}
+            {launch.rocket.rocket_name}
             <br />
             <FormattedMessage {...messages.type} />
-            {props.launch.rocket.rocket_type}
+            {launch.rocket.rocket_type}
             <br />
             <h3>
               <FormattedMessage {...messages.firststage} />
             </h3>
             <br />
             <FormattedMessage {...messages.coreserial} />
-            {props.launch.rocket.first_stage.cores[0].core_serial}
+            {launch.rocket.first_stage.cores[0].core_serial}
             <br />
             <FormattedMessage {...messages.flight} />
-            {props.launch.rocket.first_stage.cores[0].flight}
+            {launch.rocket.first_stage.cores[0].flight}
             <br />
             <FormattedMessage {...messages.block} />
-            {props.launch.rocket.first_stage.cores[0].block}
+            {launch.rocket.first_stage.cores[0].block}
             <br />
             <FormattedMessage {...messages.gridfins} />
-            {props.launch.rocket.first_stage.cores[0].gridfins ? 'Oui' : 'Non'}
+            {launch.rocket.first_stage.cores[0].gridfins ? 'Oui' : 'Non'}
             <br />
             <FormattedMessage {...messages.legs} />
-            {props.launch.rocket.first_stage.cores[0].legs ? 'Oui' : 'Non'}
+            {launch.rocket.first_stage.cores[0].legs ? 'Oui' : 'Non'}
             <br />
             <FormattedMessage {...messages.reused} />
-            {props.launch.rocket.first_stage.cores[0].reused ? 'Oui' : 'Non'}
+            {launch.rocket.first_stage.cores[0].reused ? 'Oui' : 'Non'}
             <br />
             <FormattedMessage {...messages.landsuccess} />
-            {props.launch.rocket.first_stage.cores[0].land_success}
+            {launch.rocket.first_stage.cores[0].land_success}
             <br />
             <FormattedMessage {...messages.landingintent} />
-            {props.launch.rocket.first_stage.cores[0].landing_intent
-              ? 'Oui'
-              : 'Non'}
+            {launch.rocket.first_stage.cores[0].landing_intent ? 'Oui' : 'Non'}
             <br />
             <FormattedMessage {...messages.landingtype} />
-            {props.launch.rocket.first_stage.cores[0].landing_type}
+            {launch.rocket.first_stage.cores[0].landing_type}
             <br />
             <FormattedMessage {...messages.landingvehicle} />
-            {props.launch.rocket.first_stage.cores[0].landing_vehicle}
+            {launch.rocket.first_stage.cores[0].landing_vehicle}
             <br />
             <h3>
               <FormattedMessage {...messages.secondstage} />
             </h3>
             <br />
             <FormattedMessage {...messages.block} />
-            {props.launch.rocket.second_stage.block}
+            {launch.rocket.second_stage.block}
             <br />
             <FormattedMessage {...messages.payload} />
             <br />
             <FormattedMessage {...messages.name} />
-            {props.launch.rocket.second_stage.payloads[0].payload_id}
+            {launch.rocket.second_stage.payloads[0].payload_id}
             <br />
             <FormattedMessage {...messages.reused} />
-            {props.launch.rocket.second_stage.payloads[0].reused
-              ? 'Oui'
-              : 'Non'}
+            {launch.rocket.second_stage.payloads[0].reused ? 'Oui' : 'Non'}
             <br />
             <FormattedMessage {...messages.customers} />
-            {props.launch.rocket.second_stage.payloads[0].customers.map(
-              (customer, index) => {
-                ` Client n°${index}: ${customer} `;
-              },
+            {launch.rocket.second_stage.payloads[0].customers.map(
+              (customer, index) => ` Client n°${index}: ${customer} `,
             )}
             <br />
             <FormattedMessage {...messages.nationality} />
-            {props.launch.rocket.second_stage.payloads[0].nationality}
+            {launch.rocket.second_stage.payloads[0].nationality}
             <br />
             <FormattedMessage {...messages.manufacturer} />
-            {props.launch.rocket.second_stage.payloads[0].manufacturer}
+            {launch.rocket.second_stage.payloads[0].manufacturer}
             <br />
             <FormattedMessage {...messages.payloadtype} />
-            {props.launch.rocket.second_stage.payloads[0].payload_type}
+            {launch.rocket.second_stage.payloads[0].payload_type}
             <br />
             <FormattedMessage {...messages.payloadmass} />
-            {props.launch.rocket.second_stage.payloads[0].payload_mass_kg} Kg
+            {launch.rocket.second_stage.payloads[0].payload_mass_kg} Kg
             <br />
             <FormattedMessage {...messages.orbittwopoints} />
-            {props.launch.rocket.second_stage.payloads[0].orbit}
+            {launch.rocket.second_stage.payloads[0].orbit}
             <br />
             <FormattedMessage {...messages.carenage} />
             <br />
             <FormattedMessage {...messages.reused} />
-            {props.launch.rocket.fairings ? (
-              props.launch.rocket.fairings.reused ? (
-                <FormattedMessage {...messages.true} />
-              ) : (
-                <FormattedMessage {...messages.false} />
-              )
-            ) : (
-              <div />
-            )}{' '}
+            {launch.rocket.fairings && launch.rocket.fairings.reused}
             <br />
             <FormattedMessage {...messages.attempt} />
-            {props.launch.rocket.fairings ? (
-              props.launch.rocket.fairings.recovery_attempt ? (
-                <FormattedMessage {...messages.true} />
-              ) : (
-                <FormattedMessage {...messages.false} />
-              )
-            ) : (
-              <div />
-            )}{' '}
+            {launch.rocket.fairings && launch.rocket.fairings.recoveryAttempt}
             <br />
             <FormattedMessage {...messages.recovered} />
-            {props.launch.rocket.fairings ? (
-              props.launch.rocket.fairings.recovered ? (
-                <FormattedMessage {...messages.true} />
-              ) : (
-                <FormattedMessage {...messages.false} />
-              )
-            ) : (
-              <div />
-            )}{' '}
+            {launch.rocket.fairings && launch.rocket.fairings.recovered}
             <br />
             <FormattedMessage {...messages.navire} />
-            {props.launch.rocket.fairings ? (
-              props.launch.rocket.fairings.ship
-            ) : (
-              <div />
-            )}{' '}
+            {launch.rocket.fairings && launch.rocket.fairings.ship}
             <br />
           </Typography>
         </AccordionDetails>
@@ -233,89 +210,68 @@ export default function SimpleAccordionLaunch(props) {
             <br />
             <FormattedMessage {...messages.referencesystem} />
             {
-              props.launch.rocket.second_stage.payloads[0].orbit_params
+              launch.rocket.second_stage.payloads[0].orbit_params
                 .reference_system
             }
             <br />
             <FormattedMessage {...messages.orbitlevel} />
-            {props.launch.rocket.second_stage.payloads[0].orbit_params.regime}
+            {launch.rocket.second_stage.payloads[0].orbit_params.regime}
             <br />
             <FormattedMessage {...messages.longitude} />
-            {
-              props.launch.rocket.second_stage.payloads[0].orbit_params
-                .longitude
-            }
+            {launch.rocket.second_stage.payloads[0].orbit_params.longitude}
             <br />
             <FormattedMessage {...messages.bigaxe} />
             {
-              props.launch.rocket.second_stage.payloads[0].orbit_params
+              launch.rocket.second_stage.payloads[0].orbit_params
                 .semi_major_axis_km
             }{' '}
             Km
             <br />
             <FormattedMessage {...messages.excentricite} />
-            {
-              props.launch.rocket.second_stage.payloads[0].orbit_params
-                .eccentricity
-            }
+            {launch.rocket.second_stage.payloads[0].orbit_params.eccentricity}
             <br />
             <FormattedMessage {...messages.periastre} />
             {
-              props.launch.rocket.second_stage.payloads[0].orbit_params
-                .periapsis_km
+              launch.rocket.second_stage.payloads[0].orbit_params.periapsis_km
             }{' '}
             Km
             <br />
             <FormattedMessage {...messages.apoapsis} />
-            {
-              props.launch.rocket.second_stage.payloads[0].orbit_params
-                .apoapsis_km
-            }{' '}
-            Km
+            {launch.rocket.second_stage.payloads[0].orbit_params.apoapsis_km} Km
             <br />
             <FormattedMessage {...messages.incilaison} />
             {
-              props.launch.rocket.second_stage.payloads[0].orbit_params
+              launch.rocket.second_stage.payloads[0].orbit_params
                 .inclination_deg
             }{' '}
             Deg
             <br />
             <FormattedMessage {...messages.period} />
-            {
-              props.launch.rocket.second_stage.payloads[0].orbit_params
-                .period_min
-            }
+            {launch.rocket.second_stage.payloads[0].orbit_params.period_min}
             <br />
             <FormattedMessage {...messages.autonomy} />
             {
-              props.launch.rocket.second_stage.payloads[0].orbit_params
-                .lifespan_years
+              launch.rocket.second_stage.payloads[0].orbit_params.lifespan_years
             }{' '}
             Année(s)
             <br />
             <FormattedMessage {...messages.epoq} />
-            {props.launch.rocket.second_stage.payloads[0].orbit_params.epoch}
+            {launch.rocket.second_stage.payloads[0].orbit_params.epoch}
             <br />
             <FormattedMessage {...messages.averagemove} />
-            {
-              props.launch.rocket.second_stage.payloads[0].orbit_params
-                .mean_motion
-            }
+            {launch.rocket.second_stage.payloads[0].orbit_params.mean_motion}
             <br />
             <FormattedMessage {...messages.raan} />
-            {props.launch.rocket.second_stage.payloads[0].orbit_params.raan}
+            {launch.rocket.second_stage.payloads[0].orbit_params.raan}
             <br />
             <FormattedMessage {...messages.pericentre} />
             {
-              props.launch.rocket.second_stage.payloads[0].orbit_params
+              launch.rocket.second_stage.payloads[0].orbit_params
                 .arg_of_pericenter
             }
             <br />
             <FormattedMessage {...messages.anomaly} />
-            {
-              props.launch.rocket.second_stage.payloads[0].orbit_params
-                .mean_anomaly
-            }
+            {launch.rocket.second_stage.payloads[0].orbit_params.mean_anomaly}
             <br />
           </Typography>
         </AccordionDetails>
@@ -333,7 +289,7 @@ export default function SimpleAccordionLaunch(props) {
         <AccordionDetails>
           <Typography>
             <FormattedMessage {...messages.successlaunch} />
-            {props.launch.launch_success ? (
+            {launch.launch_success ? (
               <FormattedMessage {...messages.true} />
             ) : (
               <FormattedMessage {...messages.false} />
@@ -342,15 +298,15 @@ export default function SimpleAccordionLaunch(props) {
             <FormattedMessage {...messages.launchproblem} />
             <br />
             <FormattedMessage {...messages.time} />
-            {!props.launch.launch_success ? (
-              `${props.launch.launch_failure_details.time}min`
+            {!launch.launch_success ? (
+              `${launch.launch_failure_details.time}min`
             ) : (
               <div />
             )}
             <br />
             <FormattedMessage {...messages.reason} />
-            {!props.launch.launch_success ? (
-              props.launch.launch_failure_details.reason
+            {!launch.launch_success ? (
+              launch.launch_failure_details.reason
             ) : (
               <div />
             )}
@@ -369,7 +325,7 @@ export default function SimpleAccordionLaunch(props) {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>{props.launch.details}</Typography>
+          <Typography>{launch.details}</Typography>
         </AccordionDetails>
       </Accordion>
       <Accordion>
@@ -385,9 +341,9 @@ export default function SimpleAccordionLaunch(props) {
         <AccordionDetails>
           <div width="100%" className="myvertical">
             <div width="100%" className="myhorizontal">
-              {props.launch.links.mission_patch ? (
+              {launch.links.mission_patch ? (
                 <span>
-                  <a target="_blank" href={props.launch.links.mission_patch}>
+                  <a target="_blank" href={launch.links.mission_patch}>
                     <Button>
                       <FormattedMessage {...messages.ecusson} />
                     </Button>
@@ -400,9 +356,9 @@ export default function SimpleAccordionLaunch(props) {
                   </DesactivedButton>
                 </span>
               )}
-              {props.launch.links.reddit_campaign ? (
+              {launch.links.reddit_campaign ? (
                 <span align="center" width="200px">
-                  <a target="_blank" href={props.launch.links.reddit_campaign}>
+                  <a target="_blank" href={launch.links.reddit_campaign}>
                     <Button>
                       <FormattedMessage {...messages.campagnereddit} />
                     </Button>
@@ -415,9 +371,9 @@ export default function SimpleAccordionLaunch(props) {
                   </DesactivedButton>
                 </span>
               )}
-              {props.launch.links.reddit_launch ? (
+              {launch.links.reddit_launch ? (
                 <span align="center" width="200px">
-                  <a target="_blank" href={props.launch.links.reddit_launch}>
+                  <a target="_blank" href={launch.links.reddit_launch}>
                     <Button>
                       <FormattedMessage {...messages.lancementreddit} />
                     </Button>
@@ -430,9 +386,9 @@ export default function SimpleAccordionLaunch(props) {
                   </DesactivedButton>
                 </span>
               )}
-              {props.launch.links.reddit_recovery ? (
+              {launch.links.reddit_recovery ? (
                 <span align="center" width="200px">
-                  <a target="_blank" href={props.launch.links.reddit_recovery}>
+                  <a target="_blank" href={launch.links.reddit_recovery}>
                     <Button>
                       <FormattedMessage {...messages.recuperationreddit} />
                     </Button>
@@ -448,9 +404,9 @@ export default function SimpleAccordionLaunch(props) {
             </div>
             <br />
             <div width="100%" className="myhorizontal">
-              {props.launch.links.reddit_media ? (
+              {launch.links.reddit_media ? (
                 <div align="center" width="12%">
-                  <a target="_blank" href={props.launch.links.reddit_media}>
+                  <a target="_blank" href={launch.links.reddit_media}>
                     <Button>
                       <FormattedMessage {...messages.mediareddit} />
                     </Button>
@@ -463,9 +419,9 @@ export default function SimpleAccordionLaunch(props) {
                   </DesactivedButton>
                 </div>
               )}
-              {props.launch.links.presskit ? (
+              {launch.links.presskit ? (
                 <div align="center" width="12%">
-                  <a target="_blank" href={props.launch.links.presskit}>
+                  <a target="_blank" href={launch.links.presskit}>
                     <Button>
                       <FormattedMessage {...messages.presse} />
                     </Button>
@@ -478,9 +434,9 @@ export default function SimpleAccordionLaunch(props) {
                   </DesactivedButton>
                 </div>
               )}
-              {props.launch.links.article_link ? (
+              {launch.links.article_link ? (
                 <div align="center" width="12%">
-                  <a target="_blank" href={props.launch.links.article_link}>
+                  <a target="_blank" href={launch.links.article_link}>
                     <Button>
                       <FormattedMessage {...messages.article} />
                     </Button>
@@ -493,9 +449,9 @@ export default function SimpleAccordionLaunch(props) {
                   </DesactivedButton>
                 </div>
               )}
-              {props.launch.links.wikipedia ? (
+              {launch.links.wikipedia ? (
                 <div align="center" width="12%">
-                  <a target="_blank" href={props.launch.links.wikipedia}>
+                  <a target="_blank" href={launch.links.wikipedia}>
                     <Button>
                       <FormattedMessage {...messages.wikipedia} />
                     </Button>
@@ -508,9 +464,9 @@ export default function SimpleAccordionLaunch(props) {
                   </DesactivedButton>
                 </div>
               )}
-              {props.launch.telemetry.flight_club ? (
+              {launch.telemetry.flight_club ? (
                 <div align="center" width="12%">
-                  <a target="_blank" href={props.launch.telemetry.flight_club}>
+                  <a target="_blank" href={launch.telemetry.flight_club}>
                     <Button>
                       <FormattedMessage {...messages.flightclub} />
                     </Button>
@@ -539,11 +495,15 @@ export default function SimpleAccordionLaunch(props) {
         </AccordionSummary>
         <AccordionDetails>
           <Karoussel
-            pictures={props.launch.links.flickr_images}
-            name={props.launch.mission_name}
+            pictures={launch.links.flickr_images}
+            name={launch.mission_name}
           />
         </AccordionDetails>
       </Accordion>
     </div>
   );
 }
+
+SimpleAccordionLaunch.propTypes = {
+  launch: PropTypes.object,
+};
